@@ -126,6 +126,32 @@
                     </StackPanel>
                 </Grid>
             </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="65"/>
+                    <RowDefinition Height="65"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <materialDesign:PackIcon Kind="SignatureText" VerticalAlignment="Bottom" Margin="2 12" Foreground="{Binding BorderBrush, ElementName=Encrypted}"/>
+                    <TextBox x:Name="Encrypted" Margin="5" materialDesign:HintAssist.Hint="encrypted" Padding="8 0 0 0" Text="{Binding Name}"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" FontSize="14" SelectionTextBrush="White" Foreground="Black"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Grid>
+                            <Button x:Name="Hack" Content="Hack"  Margin="90 5" BorderBrush="#FF4BA8F2" FontFamily="MV Boli" FontSize="18" Width="100" Click="Hack_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Grid>
+                            <Button x:Name="Hack2" Content="Hack2"  Margin="90 5" BorderBrush="#FF4BA8F2" FontFamily="MV Boli" FontSize="18" Width="100" Click="Hack2_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

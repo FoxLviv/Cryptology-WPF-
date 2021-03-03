@@ -22,7 +22,7 @@ namespace Cryptology_Lab2_Tritemius_cypher_
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string Path = "";        
+        private string Path = "";
 
         public MainWindow()
         {
@@ -57,7 +57,7 @@ namespace Cryptology_Lab2_Tritemius_cypher_
             }
             try
             {
-                using (StreamWriter sw = new StreamWriter(Path, false, System.Text.Encoding.Default))
+                using (StreamWriter sw = new StreamWriter(Path, false, System.Text.Encoding.Unicode))
                 {
                     sw.WriteLine(TextBoxOriginal.Text);
                 }                
@@ -70,11 +70,7 @@ namespace Cryptology_Lab2_Tritemius_cypher_
 
         private void ButtonPopUpOpen_Click(object sender, RoutedEventArgs e)
         {            
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //if (openFileDialog.ShowDialog() == true)
-            //    //textByte = File.ReadAllBytes(openFileDialog.FileName);
-            //TextBoxOriginal.Text = (openFileDialog.FileName.EndsWith(".txt") || openFileDialog.FileName.EndsWith(".docx")) ? File.ReadAllText(openFileDialog.FileName) : Convert.ToBase64String(File.ReadAllBytes(openFileDialog.FileName));            
-
+            
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
@@ -144,6 +140,15 @@ namespace Cryptology_Lab2_Tritemius_cypher_
                     break;
                 case 1:
                     GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new UserControlGamma());
+                    break;
+                case 2:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new UserControlVigener());
+                    break;
+                case 3:
+                    GridPrincipal.Children.Clear();
+                    GridPrincipal.Children.Add(new UserControlRSA());
                     break;
                 default:
                     break;

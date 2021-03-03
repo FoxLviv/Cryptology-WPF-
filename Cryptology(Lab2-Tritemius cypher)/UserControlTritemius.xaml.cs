@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Cryptology_Lab2_Tritemius_cypher_.Ciphers;
 
 namespace Cryptology_Lab2_Tritemius_cypher_
@@ -104,6 +95,29 @@ namespace Cryptology_Lab2_Tritemius_cypher_
                     (window as MainWindow).TextBoxOriginal.Text = tritemius.GausaDecrypt();
                 }
             }
+        }
+
+        private void Hack_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(MainWindow))
+                {
+                    text = (window as MainWindow).TextBoxOriginal.Text;
+                    tritemius = new Tritemius(text, KeyWord.Text);
+                    int first = 0;
+                    int second = 0;
+                    tritemius.TritemiusHackTwo(Encrypted.Text,out first, out second);
+                    FirstNumberBox_One.Text = first.ToString();
+                    SecondNumberBox_One.Text = second.ToString();
+                }
+            }
+
+        }
+
+        private void Hack2_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

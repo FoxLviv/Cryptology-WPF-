@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 
 namespace Cryptology_Lab2_Tritemius_cypher_.Ciphers
 {
@@ -8,8 +9,8 @@ namespace Cryptology_Lab2_Tritemius_cypher_.Ciphers
     {
         // L=(m+k)modN
         private string _text;
-        private string kirilics = "абвгдеєжзиіїйклмнопрстуфхцчшщьюя";
-        private string latin = "abcdefghijklmnopqrstuvwxyz";
+        private string kirilics = "абвгдеєжзиіїйклмнопрстуфхцчшщьюя ";
+        private string latin = "abcdefghijklmnopqrstuvwxyz ";
         public int _keyOne { get; private set; }
         public int _keyTwo { get; private set; }
         public int _keyThree { get; private set; }
@@ -319,6 +320,69 @@ namespace Cryptology_Lab2_Tritemius_cypher_.Ciphers
             return res;
         }
         #endregion
+        public void TritemiusHackTwo(string encrypted, out int one, out int two)
+        {
+            one = 0;
+            two = 0;
+            int keyone = 0;
+            int keytwo = 0;
+            string res = "";
+            //string test = "";
+            if (this.IsKirilics(_text) == true)
+            {
+
+                while (res != encrypted)
+                {
+                    res = "";
+                    for (int i = 0; i < encrypted.Length; i++)
+                    {
+                        int m = 0;
+                        for (int j = 0; j < kirilics.Length; j++)
+                        {
+                            if (_text[i] == kirilics[j])
+                            {
+                                m = j; // number of letter in alphabet
+                                break;
+                            }
+                        }
+                        res += kirilics[(m + keyone * i + keytwo) % kirilics.Length];
+                    }
+                    keytwo += 1;
+                    if (kirilics.Length <= keytwo)
+                    {
+                        keyone += 1;
+                        keytwo = 0;
+                        
+                    }
+                    if(res == encrypted)
+                    {
+                        one = keyone;
+                        two = keytwo- 1;
+                        break;
+                    }
+                    _keyOne = keyone;
+                    _keyTwo = keytwo;
+                }   
+            }
+            //else
+            //{
+            //    for (int i = 0; i < _text.Length; i++)
+            //    {
+            //        int m = 0;
+            //        for (int j = 0; j < latin.Length; j++)
+            //        {
+            //            if (_text[i] == latin[j])
+            //            {
+            //                m = j; // number of letter in alphabet
+            //                break;
+            //            }
+            //        }
+            //        res += latin[(m + _keyOne * i + _keyTwo) % latin.Length];
+            //    }
+            //}                      
+        }
+
+        
 
         //public string CaesarEncrypt()
         //{
